@@ -1,4 +1,4 @@
- export default (name, options, mixins) => {
+export default (name, options, mixins) => {
   let event
   try {
     // Not supported in some versions of Android's old WebKit-based WebView
