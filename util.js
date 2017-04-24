@@ -1,4 +1,4 @@
-export default (name, options, mixins) => {
+export function createEvent (name, options, mixins) {
   let event
   try {
     // Not supported in some versions of Android's old WebKit-based WebView
@@ -13,3 +13,16 @@ export default (name, options, mixins) => {
   }
   return Object.assign(event, mixins)
 }
+
+export const checkOptionsSupported = (function () {
+  let supported = false
+  try {
+    window.addEventListener('test', null, Object.defineProperty({}, 'passive', {
+      get () {
+        supported = true
+      }
+    }))
+  } catch (e) {}
+
+  return () => supported
+})()
