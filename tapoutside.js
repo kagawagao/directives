@@ -2,7 +2,7 @@
  * Directive for emitting custom event tapoutside
  * when tap event fired by other elements
  */
-import createEvent from './_create-event'
+import { createEvent } from './util'
 
 export default {
   name: 'tapoutside',

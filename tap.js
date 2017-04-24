@@ -1,7 +1,11 @@
 /**
  * Simple directive for mocking tap event
  */
-import createEvent from './_create-event'
+import { createEvent, checkOptionsSupported } from './util'
+
+const opts = checkOptionsSupported() ? {
+  passive: false
+} : false
 
 export default {
   name: 'tap',
@@ -28,7 +32,7 @@ export default {
               startPoint = null
             }
           }
-        })
+        }, opts)
 
         el.addEventListener('touchend', el._tap_touchend = e => {
           el.removeEventListener('touchmove', el._tap_touchmove)
@@ -51,7 +55,7 @@ export default {
               el.dispatchEvent(tapEvent)
             }
           }
-        })
+        }, opts)
 
         el.addEventListener('touchcancel', el._tap_touchcancel = e => {
           el.removeEventListener('touchmove', el._tap_touchmove)
@@ -61,9 +65,9 @@ export default {
           if (startPoint) {
             startPoint = null
           }
-        })
+        }, opts)
       }
-    })
+    }, opts)
   },
 
   unbind (el) {

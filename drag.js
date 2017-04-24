@@ -1,7 +1,11 @@
 /**
  * Simple directive for dragging events
  */
-import createEvent from './_create-event'
+import { createEvent, checkOptionsSupported } from './util'
+
+const opts = checkOptionsSupported() ? {
+  passive: false
+} : false
 
 export default {
   name: 'drag',
@@ -52,7 +56,7 @@ export default {
         }
 
         el.dispatchEvent(createEvent('drag', null, { originalEvent: e }))
-      })
+      }, opts)
 
       // 完成
       doc.addEventListener('touchend', el._drag_touchend = e => {
@@ -68,11 +72,11 @@ export default {
           startPoint = null
           el.dispatchEvent(createEvent('dragend', null, { originalEvent: e }))
         }
-      })
+      }, opts)
 
       // 取消
-      doc.addEventListener('touchcancel', el._drag_touchend)
-    })
+      doc.addEventListener('touchcancel', el._drag_touchend, opts)
+    }, opts)
   },
 
   unbind (el) {
