@@ -4,7 +4,6 @@
   "description": "Directives for PLATO",
   "main": "index.js",
   "scripts": {
-    "prepublish": "npm test",
     "unit": "cross-env NODE_ENV=test DEBUG=PLATO:* karma start ./test/unit/runner.js",
     "unit:dev": "npm run unit -- --watch",
     "lint": "eslint --max-warnings 10 .",

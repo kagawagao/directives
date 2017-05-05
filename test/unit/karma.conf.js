@@ -25,7 +25,6 @@ const karmaConfig = {
   files: [
     './node_modules/regenerator-runtime/runtime.js',
     './node_modules/whatwg-fetch/fetch.js',
-    './node_modules/phantomjs-polyfill/bind-polyfill.js',
     './node_modules/sinon/pkg/sinon.js',
     {
       pattern: './test/unit/index.js',
@@ -46,7 +45,7 @@ const karmaConfig = {
   coverageReporter: {
     reporters: coverage_reporters
   },
-  browsers: ['PhantomJS'],
+  browsers: ['Chrome'],
   webpack: {
     devtool: 'inline-source-map',
     resolve: {
