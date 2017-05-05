@@ -8,8 +8,8 @@ export function createEvent (name, options, mixins) {
     if (!options) {
       options = {}
     }
-    event = document.createEvent('CustomEvent')
-    event.initCustomEvent(name, !!options.bubbles, !!options.cancelable)
+    event = document.createEvent('HTMLEvents')
+    event.initEvent(name, !!options.bubbles, !!options.cancelable)
   }
   return Object.assign(event, mixins)
 }
