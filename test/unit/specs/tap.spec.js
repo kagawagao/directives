@@ -91,6 +91,28 @@ describe('tap', () => {
     triggerTouchEvents(vm.$el, 'touchcancel')
   })
 
+  it('should NOT dispatch tap event on disabled element', done => {
+    vm = new Vue({
+      el,
+      template: '<button disabled v-tap @tap="onTap"></button>',
+      methods: {
+        onTap () {
+          assert(false, 'should NOT be called')
+        }
+      }
+    })
+
+    triggerTouchEvents(vm.$el, 'touchstart', e => {
+      e.touches = [{
+        pageX: 0,
+        pageY: 0
+      }]
+    })
+    triggerTouchEvents(vm.$el, 'touchend')
+
+    setTimeout(done, 500)
+  })
+
   it('should NOT dispatch tap event', done => {
     vm = new Vue({
       el,

@@ -39,7 +39,10 @@ export default {
           el.removeEventListener('touchcancel', el._tap_touchcancel)
           el.removeEventListener('touchend', el._tap_touchend)
 
-          if (startPoint) {
+          // not fire tap event on disabled element
+          const disabled = e.currentTarget.disabled
+
+          if (startPoint && !disabled) {
             startPoint = null
 
             // dispatch a tap event
